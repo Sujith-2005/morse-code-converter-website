@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse Code Converter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-broadcast-tower"></i> Morse Code Converter</h1>
+            <p>Convert text to Morse code and vice versa instantly</p>
+        </header>
+
+        <main class="main-content">
+            <div class="converter-container">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label for="textInput">Text Input</label>
+                        <textarea id="textInput" placeholder="Enter text to convert to Morse code..."></textarea>
+                        <button id="textToMorse" class="convert-btn">
+                            <i class="fas fa-arrow-right"></i> Convert to Morse
+                        </button>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="morseInput">Morse Code Input</label>
+                        <textarea id="morseInput" placeholder="Enter Morse code (use . for dot, - for dash, space to separate letters, / to separate words)..."></textarea>
+                        <button id="morseToText" class="convert-btn">
+                            <i class="fas fa-arrow-left"></i> Convert to Text
+                        </button>
+                    </div>
+                </div>
+
+                <div class="output-section">
+                    <div class="output-group">
+                        <label>Morse Code Output</label>
+                        <div id="morseOutput" class="output-display">
+                            <span class="placeholder">Morse code will appear here...</span>
+                        </div>
+                        <button id="copyMorse" class="copy-btn" style="display: none;">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+
+                    <div class="output-group">
+                        <label>Text Output</label>
+                        <div id="textOutput" class="output-display">
+                            <span class="placeholder">Text will appear here...</span>
+                        </div>
+                        <button id="copyText" class="copy-btn" style="display: none;">
+                            <i class="fas fa-copy"></i> Copy
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-volume-up"></i>
+                    <h3>Audio Playback</h3>
+                    <p>Listen to the Morse code with adjustable speed</p>
+                    <button id="playMorse" class="play-btn" disabled>
+                        <i class="fas fa-play"></i> Play Morse Code
+                    </button>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Morse Reference</h3>
+                    <p>Quick reference for Morse code characters</p>
+                    <button id="showReference" class="reference-btn">
+                        <i class="fas fa-book"></i> Show Reference
+                    </button>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-history"></i>
+                    <h3>History</h3>
+                    <p>View your recent conversions</p>
+                    <button id="showHistory" class="history-btn">
+                        <i class="fas fa-clock"></i> Show History
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Morse Code Reference Modal -->
+        <div id="referenceModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Morse Code Reference</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="reference-grid">
+                        <div class="reference-section">
+                            <h3>Letters</h3>
+                            <div class="reference-items">
+                                <div class="ref-item"><span>A</span><span>.-</span></div>
+                                <div class="ref-item"><span>B</span><span>-...</span></div>
+                                <div class="ref-item"><span>C</span><span>-.-.</span></div>
+                                <div class="ref-item"><span>D</span><span>-..</span></div>
+                                <div class="ref-item"><span>E</span><span>.</span></div>
+                                <div class="ref-item"><span>F</span><span>..-.</span></div>
+                                <div class="ref-item"><span>G</span><span>--.</span></div>
+                                <div class="ref-item"><span>H</span><span>....</span></div>
+                                <div class="ref-item"><span>I</span><span>..</span></div>
+                                <div class="ref-item"><span>J</span><span>.---</span></div>
+                                <div class="ref-item"><span>K</span><span>-.-</span></div>
+                                <div class="ref-item"><span>L</span><span>.-..</span></div>
+                                <div class="ref-item"><span>M</span><span>--</span></div>
+                                <div class="ref-item"><span>N</span><span>-.</span></div>
+                                <div class="ref-item"><span>O</span><span>---</span></div>
+                                <div class="ref-item"><span>P</span><span>.--.</span></div>
+                                <div class="ref-item"><span>Q</span><span>--.-</span></div>
+                                <div class="ref-item"><span>R</span><span>.-.</span></div>
+                                <div class="ref-item"><span>S</span><span>...</span></div>
+                                <div class="ref-item"><span>T</span><span>-</span></div>
+                                <div class="ref-item"><span>U</span><span>..-</span></div>
+                                <div class="ref-item"><span>V</span><span>...-</span></div>
+                                <div class="ref-item"><span>W</span><span>.--</span></div>
+                                <div class="ref-item"><span>X</span><span>-..-</span></div>
+                                <div class="ref-item"><span>Y</span><span>-.--</span></div>
+                                <div class="ref-item"><span>Z</span><span>--..</span></div>
+                            </div>
+                        </div>
+                        <div class="reference-section">
+                            <h3>Numbers</h3>
+                            <div class="reference-items">
+                                <div class="ref-item"><span>0</span><span>-----</span></div>
+                                <div class="ref-item"><span>1</span><span>.----</span></div>
+                                <div class="ref-item"><span>2</span><span>..---</span></div>
+                                <div class="ref-item"><span>3</span><span>...--</span></div>
+                                <div class="ref-item"><span>4</span><span>....-</span></div>
+                                <div class="ref-item"><span>5</span><span>.....</span></div>
+                                <div class="ref-item"><span>6</span><span>-....</span></div>
+                                <div class="ref-item"><span>7</span><span>--...</span></div>
+                                <div class="ref-item"><span>8</span><span>---..</span></div>
+                                <div class="ref-item"><span>9</span><span>----.</span></div>
+                            </div>
+                        </div>
+                        <div class="reference-section">
+                            <h3>Punctuation</h3>
+                            <div class="reference-items">
+                                <div class="ref-item"><span>.</span><span>.-.-.-</span></div>
+                                <div class="ref-item"><span>,</span><span>--..--</span></div>
+                                <div class="ref-item"><span>?</span><span>..--..</span></div>
+                                <div class="ref-item"><span>!</span><span>-.-.--</span></div>
+                                <div class="ref-item"><span>@</span><span>.--.-.</span></div>
+                                <div class="ref-item"><span>:</span><span>---...</span></div>
+                                <div class="ref-item"><span>;</span><span>-.-.-.</span></div>
+                                <div class="ref-item"><span>=</span><span>-...-</span></div>
+                                <div class="ref-item"><span>+</span><span>.-.-.</span></div>
+                                <div class="ref-item"><span>-</span><span>-....-</span></div>
+                                <div class="ref-item"><span>/</span><span>-..-.</span></div>
+                                <div class="ref-item"><span>(</span><span>-.--.</span></div>
+                                <div class="ref-item"><span>)</span><span>-.--.-</span></div>
+                                <div class="ref-item"><span>&</span><span>.-...</span></div>
+                                <div class="ref-item"><span>$</span><span>...-..-</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Modal -->
+        <div id="historyModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Conversion History</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="historyList" class="history-list">
+                        <div class="no-history">No conversion history yet</div>
+                    </div>
+                    <button id="clearHistory" class="clear-btn">Clear History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
